@@ -1,6 +1,6 @@
 {
   "name": "@payload-enchants/docs-reorder",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "private": false,
   "bugs": "https://github.com/r1tsuu/payload-enchants/issues",
   "repository": "https://github.com/r1tsuu/payload-enchants",
@@ -11,6 +11,11 @@
       "import": "./src/index.ts",
       "require": "./src/index.ts",
       "types": "./src/index.ts"
+    },
+    "./client": {
+      "import": "./src/exports/client.ts",
+      "require": "./src/exports/client.ts",
+      "types": "./src/exports/client.ts"
     }
   },
   "main": "./src/index.ts",
@@ -34,15 +39,15 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@payloadcms/ui": "3.0.0-beta.61",
-    "@types/react": "npm:types-react@19.0.0-beta.2",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-beta.2",
-    "payload": "3.0.0-beta.61",
-    "react-dom": "19.0.0-rc-f994737d14-20240522"
+    "@payloadcms/ui": "3.1.0",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "payload": "3.1.0",
+    "react-dom": "19.0.0-rc-65a56d0e-20241020"
   },
   "peerDependencies": {
-    "@payloadcms/ui": "^3.0.0-beta.61",
-    "payload": "^3.0.0-beta.61"
+    "@payloadcms/ui": "3.1.0",
+    "payload": "3.1.0"
   },
   "publishConfig": {
     "exports": {
@@ -50,6 +55,11 @@
         "import": "./dist/index.js",
         "require": "./dist/index.js",
         "types": "./dist/index.d.ts"
+      },
+      "./client": {
+        "import": "./dist/exports/client.js",
+        "require": "./dist/exports/client.js",
+        "types": "./dist/exports/client.d.ts"
       }
     },
     "main": "./dist/index.js",

@@ -1,8 +1,8 @@
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig } from 'payload'
 
-import { CollectionDocsOrderButton } from './components/CollectionDocsOrder';
-import { incrementOrder } from './hooks/incrementOrder';
-import type { DocsReorderOptions } from './types';
+import { CollectionDocsOrderButton } from './components/CollectionDocsOrder'
+import { incrementOrder } from './hooks/incrementOrder'
+import type { DocsReorderOptions } from './types'
 
 const externdCollectionConfig = (collection: CollectionConfig) => {
   return {
@@ -13,7 +13,7 @@ const externdCollectionConfig = (collection: CollectionConfig) => {
         ...(collection.admin?.components ?? {}),
         beforeList: [
           ...(collection.admin?.components?.beforeList ?? []),
-          CollectionDocsOrderButton,
+          CollectionDocsOrderButton(collection.slug),
         ],
       },
     },
@@ -21,12 +21,12 @@ const externdCollectionConfig = (collection: CollectionConfig) => {
       ...collection.fields,
       {
         access: {
-          create: () => false,
+          create: () => true,
           read: () => true,
-          update: () => false,
+          update: () => true,
         },
         admin: {
-          hidden: true,
+          hidden: false,
         },
         index: true,
         name: 'docOrder',
@@ -37,18 +37,18 @@ const externdCollectionConfig = (collection: CollectionConfig) => {
       ...(collection.hooks ?? {}),
       beforeValidate: [...(collection.hooks?.beforeValidate ?? []), incrementOrder],
     },
-  } as CollectionConfig;
-};
+  } as CollectionConfig
+}
 
 export const extendCollectionsConfig = (
   incomingCollections: CollectionConfig[],
   { collections }: DocsReorderOptions,
 ) => {
   return incomingCollections.map((collection) => {
-    const foundInConfig = collections.some(({ slug }) => slug === collection.slug);
+    const foundInConfig = collections.some(({ slug }) => slug === collection.slug)
 
-    if (!foundInConfig) return collection;
+    if (!foundInConfig) return collection
 
-    return externdCollectionConfig(collection);
-  });
-};
+    return externdCollectionConfig(collection)
+  })
+}
